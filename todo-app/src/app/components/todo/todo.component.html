@@ -1,0 +1,35 @@
+<section class="todolist-wrapper">
+  <h1 class="title">TODO APP</h1>
+  <div class="new-todo">
+    <input type="text" placeholder="Add a new task">
+    <button type="button">+</button>
+  </div>
+
+  <div class="filters">
+    <button (click)="changeFilter('all')" [class.active]="filter() === 'all'" type="button">All</button>
+    <button (click)="changeFilter('active')" [class.active]="filter() === 'active'" type="button">Active</button>
+    <button (click)="changeFilter('completed')" [class.active]="filter() === 'completed'" type="button">Completed</button>
+  </div>
+
+  <ul class="todolist">
+    @for (todo of todoList(); track todo.id) {
+      @if (todo.editing) {
+        <!-- Editando -->
+        <li class="todo-editing">
+          <input type="text" placeholder="Edit task">
+        </li>
+      } @else {
+        <!-- Editado -->
+        <li class="todo">
+          <label>
+            <input type="checkbox">
+            {{ todo.title }}
+          </label>
+          <button type="button">Edit</button>
+          <button type="button">Delete</button>
+        </li>
+      }
+    }
+  </ul>
+
+</section>
